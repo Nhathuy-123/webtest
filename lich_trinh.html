@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <title></title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="lich_trinh.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  </head>
+  <body>
+    <!--Header-->
+    <script src="script.js"></script>
+    <!--home-->
+    <div id="head">
+      <div id="quick" title="Trang chủ">
+        <a href="index.html">
+            <img src="logoq.png" alt="trang chu">
+        </a>
+    </div>
+      <div class="muc_1">
+        <a class="demuc" href="index.html">
+          <img id="game1" src="home.png" alt="game" />
+          <br />
+          <span class="title"> Trở về </span>
+        </a>
+      </div>
+      <div class="mid">
+        <!--search-->
+        <div class="search">
+          <form id="search-form">
+            <input type="text" id="nhap_vao" placeholder="Tìm Kiếm" />
+          </form>
+          <!--Game-->
+          <div class="main">
+            <div class="muc_1" class="main">
+              <a class="demuc" href="tro_choi.html">
+                <img id="game1" src="Game.png" alt="game" />
+                <br />
+                <span class="title"> Trò chơi </span>
+              </a>
+            </div>
+          </div>
+          <!--community-->
+          <div class="muc_1">
+            <a class="demuc" href="cong_dong.html">
+              <img id="game1" src="community.png" alt="game" />
+              <br />
+              <span class="title"> Cộng đồng </span>
+            </a>
+          </div>
+          <!--timetable-->
+          <div class="muc_1" style="background-color: gold;">
+            <a class="demuc" href="lich_trinh.html">
+              <img id="game1" src="timetable.png" alt="game" />
+              <br />
+              <span class="title"> Lịch trình </span>
+            </a>
+          </div>
+          <!--Liên hệ-->
+          <div class="muc_1">
+            <a class="demuc" href="lienhe.html">
+              <img id="game1" src="phone.png" alt="game" />
+              <br />
+              <span class="title"> Liên hệ </span>
+            </a>
+          </div>
+          <!--thong báo-->
+          <div class="muc_2" title="Thông báo">
+            <a class="demuc0" href="#" onclick="toggleNotification()">
+              <img id="game1" src="chuong.png" alt="Thông báo" />
+            </a>
+            <div id="notification-box" class="hidden">
+              <!-- Thông báo sẽ được thêm vào đây -->
+            </div>
+          </div>
+          
+          
+          <div><!-- <div id="search-results"></div> --></div>
+        </div>
+        <!--sign up -->
+        <a href="./dangnhap.html" class="dang_nhap">Đăng nhập</a>
+      </div>
+      <br />
+      </div>
+        <!--sign up -->
+        <a href="./dangky.html" class="dang_ky">Đăng ký</a>
+      </div>
+    </div>
+    <hr />
+    <div class="calendar-container">
+      <div class="navigation">
+        <button id="prev-month">Tháng Trước</button>
+        <h2 id="month-year"></h2>
+        <button id="next-month">Tháng Sau</button>
+      </div>
+      <table class="calendar">
+        <thead>
+          <tr>
+            <th>CN</th>
+            <th>T2</th>
+            <th>T3</th>
+            <th>T4</th>
+            <th>T5</th>
+            <th>T6</th>
+            <th>T7</th>
+          </tr>
+        </thead>
+        <tbody id="calendar-body">
+          <!-- Các ngày sẽ được thêm vào đây bởi JavaScript -->
+        </tbody>
+      </table>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+  let currentMonth = new Date().getMonth();
+  let currentYear = new Date().getFullYear();
+  const monthYear = document.getElementById("month-year");
+  const calendarBody = document.getElementById("calendar-body");
+
+  const prevMonthBtn = document.getElementById("prev-month");
+  const nextMonthBtn = document.getElementById("next-month");
+
+  const today = new Date();
+  const months = [
+    "Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", 
+    "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"
+  ];
+
+  function updateMonthYear() {
+    monthYear.innerHTML = `${months[currentMonth]} - ${currentYear}`;
+  }
+
+  function getDaysInMonth(month, year) {
+    return new Date(year, month + 1, 0).getDate();
+  }
+
+  function generateCalendar(month, year) {
+    calendarBody.innerHTML = "";
+    const firstDay = new Date(year, month).getDay();
+    const daysInMonth = getDaysInMonth(month, year);
+    let date = 1;
+
+    for (let i = 0; i < 6; i++) {
+      const row = document.createElement("tr");
+
+      for (let j = 0; j < 7; j++) {
+        const cell = document.createElement("td");
+
+        if (i === 0 && j < firstDay) {
+          cell.innerHTML = "";
+        } else if (date > daysInMonth) {
+          cell.innerHTML = "";
+        } else {
+          const dateKey = `${year}-${month + 1}-${date}`;
+          cell.innerHTML = date;
+          cell.setAttribute("data-date", date);
+
+          // Khi nhấn vào một ô lịch, hiển thị thông báo yêu cầu đăng nhập
+          cell.addEventListener("click", function () {
+            alert("Bạn cần đăng nhập");
+          });
+
+          date++;
+        }
+        row.appendChild(cell);
+      }
+      calendarBody.appendChild(row);
+    }
+  }
+
+  prevMonthBtn.addEventListener("click", function () {
+    currentMonth--;
+    if (currentMonth < 0) {
+      currentMonth = 11;
+      currentYear--;
+    }
+    updateMonthYear();
+    generateCalendar(currentMonth, currentYear);
+  });
+
+  nextMonthBtn.addEventListener("click", function () {
+    currentMonth++;
+    if (currentMonth > 11) {
+      currentMonth = 0;
+      currentYear++;
+    }
+    updateMonthYear();
+    generateCalendar(currentMonth, currentYear);
+  });
+
+  updateMonthYear();
+  generateCalendar(currentMonth, currentYear);
+});
+
+    </script>
+    <!-- <script src="lich_trinh.js"></script> -->
+    <script src="script.js"></script>
+    <script src="thong_bao.js"></script>
+  </body>
+</html>

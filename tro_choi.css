@@ -1,0 +1,114 @@
+h1 {
+  text-align: center;
+  color: black;
+}
+#game3 {
+  width: 300px;
+  transition: filter 0.3s ease;
+}
+
+.demuc3 {
+  text-decoration: none;
+  color: black;
+  align-items: center;
+  display: inline;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+}
+
+.muc_3 {
+  /* border: 1px solid; */
+  display: inline-block;
+  width: 300px;
+  /* padding: 20px; Thêm padding để tạo khoảng cách bên trong */
+  margin: 50px;
+  transition: background-color 0.3s ease;
+}
+.title3 {
+  display: block;
+  text-align: center;
+  font-size: 15px;
+}
+.lien {
+  font-size: 25px;
+}
+#thong_tin {
+  margin-top: 0%;
+  margin-bottom: 0%;
+  display: flex;
+  justify-content: center; /* Căn giữa theo chiều ngang */
+}
+/* Hiệu ứng khi di chuột vào .muc_1 */
+.muc_3:hover {
+  background-color: gray;
+  border: 3px solid;
+}
+
+/* Hiệu ứng khi di chuột vào liên kết */
+.demuc3:hover {
+  color: black;
+}
+
+/* Hiệu ứng hình ảnh khi di chuột */
+.demuc3:hover #game1 {
+  filter: grayscale(100%);
+}
+.container {
+  display: flex;
+  justify-content: center; /* Căn giữa theo chiều ngang */
+  gap: 20px; /* Khoảng cách giữa các khối */
+}
+
+.muc_3 {
+  text-align: center; /* Căn giữa nội dung bên trong mỗi khối */
+}
+.muc_3 {
+  display: inline-block;
+  width: 300px;
+  margin: 50px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Thêm hiệu ứng transition cho box-shadow */
+}
+
+#game3 {
+  width: 300px;
+  transition: filter 0.3s ease, box-shadow 0.3s ease; /* Thêm transition cho box-shadow */
+}
+
+/* Hiệu ứng khi di chuột vào .muc_3 */
+.muc_3:hover {
+  background-color: gray;
+  border: 3px solid;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Thêm hiệu ứng độ bóng */
+}
+
+/* Hiệu ứng hình ảnh khi di chuột */
+.muc_3:hover #game3 {
+  filter: grayscale(50%); /* Tạo hiệu ứng hình ảnh thay đổi độ mờ màu */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7); /* Hiệu ứng độ bóng lớn hơn khi di chuột vào hình ảnh */
+}
+
+.image-container {
+  position: relative;
+  width: 100%;
+  max-width: 800px; /* Điều chỉnh kích thước tối đa của khung */
+  height: 300px;
+  margin: 0 auto; /* Căn giữa khung theo chiều ngang */
+  overflow: hidden;
+}
+
+.image-container img {
+  width: 100%; /* Trải đều chiều rộng của ảnh */
+  height: auto;
+  display: block;
+}
+
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* Lớp phủ làm tối ảnh */
+  pointer-events: none; /* Đảm bảo lớp phủ không ảnh hưởng đến sự tương tác */
+}
